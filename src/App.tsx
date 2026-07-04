@@ -17,6 +17,8 @@ import {
   Sparkles,
   Wine,
 } from 'lucide-react'
+import heroPhoto from './my_assets/photo_2026-07-04_18-41-42.jpg'
+import openingPhoto from './my_assets/photo_2026-07-04_18-56-40.jpg'
 import venuePhoto from './my_assets/Screenshot 2026-07-04 at 18.38.56.png'
 import './App.css'
 
@@ -111,9 +113,6 @@ function App() {
       <motion.div className="page-flower page-flower-right" style={{ y: heroDecorY }} />
 
       <section className="hero-section" id="top">
-        <motion.div className="hero-ornament" style={{ y: heroDecorY }}>
-          <BotanicalMark />
-        </motion.div>
         <motion.div
           className="hero-card"
           initial="hidden"
@@ -122,14 +121,27 @@ function App() {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="eyebrow">Приглашение на свадьбу</p>
-          <h1>
-            Андрей
-            <span>&</span>
-            Яна
-          </h1>
-          <div className="hero-date">
-            <CalendarDays size={18} />
-            24.09.2026
+          <div className="hero-headline">
+            <h1>
+              Андрей
+              <span>&</span>
+              Яна
+            </h1>
+            <motion.div
+              className="hero-photo-heart"
+              initial={{ opacity: 0, scale: 0.92, y: 24 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <img src={heroPhoto} alt="Андрей и Яна" />
+            </motion.div>
+          </div>
+          <div className="hero-date" aria-label="24 сентября 2026">
+            <span>24</span>
+            <span className="hero-date-sep">/</span>
+            <span>09</span>
+            <span className="hero-date-sep">/</span>
+            <span>2026</span>
           </div>
           <p className="hero-text">
             Дорогие родные и друзья, мы будем счастливы видеть вас рядом в день,
@@ -138,20 +150,6 @@ function App() {
           <a className="primary-link" href="#details">
             Детали праздника
           </a>
-        </motion.div>
-        <motion.div
-          className="hero-bouquet"
-          initial={{ opacity: 0, scale: 0.92, y: 24 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <span className="flower flower-burgundy" />
-          <span className="flower flower-terracotta" />
-          <span className="flower flower-powder" />
-          <span className="leaf leaf-one" />
-          <span className="leaf leaf-two" />
-          <span className="grass grass-one" />
-          <span className="grass grass-two" />
         </motion.div>
       </section>
 
@@ -358,16 +356,16 @@ function OpeningScreen({ onOpen }: OpeningScreenProps) {
         transition: { duration: 0.62, ease: [0.22, 1, 0.36, 1] },
       }}
     >
-      <div className="opening-flower opening-flower-left" />
-      <div className="opening-flower opening-flower-right" />
+      <div className="opening-bg" aria-hidden="true">
+        <img src={openingPhoto} alt="" />
+      </div>
       <motion.section
         className="opening-card"
         initial={{ opacity: 0, y: 28, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
-        <BotanicalMark />
-        <p className="opening-title">Приглашение!</p>
+        <p className="opening-script">Приглашение!</p>
         <h1>Ждем вас на нашей свадьбе</h1>
         <div
           className="open-slider"
@@ -396,23 +394,8 @@ function OpeningScreen({ onOpen }: OpeningScreenProps) {
             <ArrowRight size={26} />
           </motion.button>
         </div>
-        <p className="opening-hint">Проведите стрелку вправо</p>
       </motion.section>
     </motion.main>
-  )
-}
-
-function BotanicalMark() {
-  return (
-    <div className="botanical-mark" aria-hidden="true">
-      <span className="stem stem-left" />
-      <span className="stem stem-right" />
-      <span className="bud bud-one" />
-      <span className="bud bud-two" />
-      <span className="bud bud-three" />
-      <span className="tiny-leaf tiny-leaf-one" />
-      <span className="tiny-leaf tiny-leaf-two" />
-    </div>
   )
 }
 

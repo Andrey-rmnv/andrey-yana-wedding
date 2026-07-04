@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Manrope:wght@400;500;700;800&display=swap');
 
 :root {
   --paper: #fff7ea;
@@ -10,6 +10,7 @@
   --green: #506952;
   --powder: #cd9f86;
   --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --script: 'Great Vibes', 'Brush Script MT', cursive;
   --sans: Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     sans-serif;
 
