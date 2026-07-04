@@ -20,7 +20,7 @@
   height: 100%;
   object-fit: cover;
   transform: scale(1.04);
-  filter: blur(3px);
+  filter: blur(1.0px);
 }
 
 .opening-screen::before {
