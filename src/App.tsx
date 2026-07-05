@@ -411,9 +411,9 @@ function CountdownSection() {
       <Reveal className="section-card countdown-card centered">
         <div className="section-kicker">
           <Hourglass size={22} />
-          <span>До свадьбы</span>
+          <span>До свадьбы осталось</span>
         </div>
-        <p className="countdown-date">24 сентября 2026</p>
+        {/* <p className="countdown-date">24 сентября 2026</p> */}
         {timeLeft.isPast ? (
           <p className="countdown-done">Сегодня наш день!</p>
         ) : (
