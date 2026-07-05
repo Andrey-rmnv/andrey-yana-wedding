@@ -11,7 +11,9 @@ import {
   ArrowRight,
   CalendarDays,
   Clock3,
+  Gift,
   Heart,
+  Hourglass,
   Leaf,
   MapPin,
   Music2,
@@ -22,6 +24,32 @@ import openingPhoto from './my_assets/photo_2026-07-04_18-56-40.jpg'
 import venuePhoto from './my_assets/Screenshot 2026-07-04 at 18.38.56.png'
 import './App.css'
 
+const WEDDING_DATE = new Date(2026, 8, 24, 16, 0, 0)
+
+type TimeLeft = {
+  days: number
+  hours: number
+  minutes: number
+  seconds: number
+  isPast: boolean
+}
+
+function getTimeLeft(): TimeLeft {
+  const diff = WEDDING_DATE.getTime() - Date.now()
+
+  if (diff <= 0) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true }
+  }
+
+  return {
+    days: Math.floor(diff / 86_400_000),
+    hours: Math.floor((diff / 3_600_000) % 24),
+    minutes: Math.floor((diff / 60_000) % 60),
+    seconds: Math.floor((diff / 1_000) % 60),
+    isPast: false,
+  }
+}
+
 const fadeUp = {
   hidden: { opacity: 0, y: 28, filter: 'blur(10px)' },
   visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
@@ -29,24 +57,24 @@ const fadeUp = {
 
 const timeline = [
   {
-    time: '15:30',
+    time: '16:00',
     title: 'Сбор гостей',
     text: 'Встречаемся, обнимаемся и настраиваемся на красивый вечер.',
   },
   {
-    time: '16:00',
+    time: '17:00',
     title: 'Церемония',
     text: 'Главные слова дня, кольца и момент, ради которого все собрались.',
   },
   {
-    time: '17:00',
+    time: '18:00',
     title: 'Ужин и тосты',
     text: 'Неспешный праздник с музыкой, свечами и самыми близкими людьми.',
   },
   {
-    time: '20:00',
-    title: 'Танцы',
-    text: 'Первый танец, любимые треки и финал вечера в теплой компании.',
+    time: '23:00',
+    title: 'Торт',
+    text: 'Сладкий символ нашей новой счастливой жизни.',
   },
 ]
 
@@ -248,18 +276,43 @@ function App() {
         </Reveal>
       </section>
 
+      <section className="wishes-section">
+        <Reveal className="section-card wishes-card centered">
+          <div className="section-kicker">
+            <Gift size={22} />
+            <span>Пожелания</span>
+          </div>
+          <p>
+            Если хотите подарить нам ценный и нужный подарок, мы будем очень
+            благодарны за вклад в бюджет нашей молодой семьи.
+          </p>
+          <p>
+            Просим не обременять себя выбором цветов, ваше присутствие скрасит
+            этот день ярче любых букетов!
+          </p>
+        </Reveal>
+      </section>
+
       <section className="rsvp-section">
         <Reveal className="rsvp-card">
           <Heart className="heart-icon" size={32} />
-          <p className="eyebrow">RSVP</p>
+          <p className="eyebrow"></p>
           <h2>Подтвердите присутствие</h2>
           <p>
-            Позже подключим Google Forms, а пока оставим красивый блок-заглушку,
-            чтобы оценить визуальный ритм страницы.
+            Заполните пожалуйста форму ниже. Мы будем благодарны, если вы подтвердите свое присутствие до 16 августа.
           </p>
-          <button type="button">Ответить на приглашение</button>
+          <a
+            className="rsvp-link"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfwZvwJEmNgqXq96QaS9_OLiAfdLO5Rr9nNouiKs5f8vLpUow/viewform"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Ответить на приглашение
+          </a>
         </Reveal>
       </section>
+
+      <CountdownSection />
 
       <footer>
         <Music2 size={18} />
@@ -289,6 +342,51 @@ function Reveal({ children, className, delay = 0 }: RevealProps) {
     >
       {children}
     </motion.div>
+  )
+}
+
+function CountdownSection() {
+  const [timeLeft, setTimeLeft] = useState(getTimeLeft)
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setTimeLeft(getTimeLeft())
+    }, 1000)
+
+    return () => window.clearInterval(timer)
+  }, [])
+
+  const units = [
+    { value: timeLeft.days, label: 'дней', pad: false },
+    { value: timeLeft.hours, label: 'часов', pad: true },
+    { value: timeLeft.minutes, label: 'минут', pad: true },
+    { value: timeLeft.seconds, label: 'секунд', pad: true },
+  ]
+
+  return (
+    <section className="countdown-section">
+      <Reveal className="section-card countdown-card centered">
+        <div className="section-kicker">
+          <Hourglass size={22} />
+          <span>До свадьбы</span>
+        </div>
+        <p className="countdown-date">24 сентября 2026</p>
+        {timeLeft.isPast ? (
+          <p className="countdown-done">Сегодня наш день!</p>
+        ) : (
+          <div className="countdown-grid" aria-live="polite">
+            {units.map((unit) => (
+              <div className="countdown-unit" key={unit.label}>
+                <span className="countdown-value">
+                  {unit.pad ? String(unit.value).padStart(2, '0') : unit.value}
+                </span>
+                <span className="countdown-label">{unit.label}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </Reveal>
+    </section>
   )
 }
 

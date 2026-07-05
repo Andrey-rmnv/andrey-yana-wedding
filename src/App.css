@@ -194,7 +194,9 @@
 .location-section,
 .timeline-section,
 .mood-section,
+.wishes-section,
 .rsvp-section,
+.countdown-section,
 footer {
   position: relative;
   z-index: 1;
@@ -204,7 +206,7 @@ footer {
   display: grid;
   place-items: center;
   min-height: 100svh;
-  padding: clamp(20px, 4vw, 40px) 20px;
+  padding: clamp(16px, 3vw, 28px) 20px;
   text-align: center;
 }
 
@@ -304,7 +306,7 @@ footer {
 
 .primary-link,
 .secondary-link,
-.rsvp-card button {
+.rsvp-card .rsvp-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -326,7 +328,7 @@ footer {
 
 .primary-link:hover,
 .secondary-link:hover,
-.rsvp-card button:hover {
+.rsvp-card .rsvp-link:hover {
   transform: translateY(-2px);
   background: #4d0507;
   box-shadow: 0 24px 52px rgba(104, 8, 10, 0.24);
@@ -337,8 +339,10 @@ footer {
 .location-section,
 .timeline-section,
 .mood-section,
-.rsvp-section {
-  padding: clamp(47px, 7vw, 87px) 20px;
+.wishes-section,
+.rsvp-section,
+.countdown-section {
+  padding: clamp(28px, 4.5vw, 52px) 20px;
 }
 
 .section-card,
@@ -459,6 +463,14 @@ footer {
   align-items: center;
 }
 
+.location-copy {
+  text-align: center;
+}
+
+.location-copy .section-kicker {
+  justify-content: center;
+}
+
 .location-card p {
   margin-right: 0 !important;
   margin-left: 0 !important;
@@ -533,7 +545,7 @@ footer {
   display: grid;
   gap: 0;
   width: min(820px, 100%);
-  margin: clamp(30px, 5vw, 56px) auto 0;
+  margin: clamp(20px, 3.5vw, 36px) auto 0;
 }
 
 .timeline-item {
@@ -567,8 +579,13 @@ footer {
   text-align: center;
 }
 
-.mood-card .section-kicker {
+.mood-card .section-kicker,
+.wishes-card .section-kicker {
   justify-content: center;
+}
+
+.wishes-card p + p {
+  margin-top: 18px;
 }
 
 .palette-dots {
@@ -651,7 +668,7 @@ footer {
   color: rgba(255, 252, 244, 0.74);
 }
 
-.rsvp-card button {
+.rsvp-card .rsvp-link {
   position: relative;
   z-index: 1;
   margin-top: 34px;
@@ -660,9 +677,63 @@ footer {
   cursor: pointer;
 }
 
-.rsvp-card button:hover {
+.rsvp-card .rsvp-link:hover {
   color: var(--paper);
   background: var(--terracotta);
+}
+
+.countdown-card .section-kicker {
+  justify-content: center;
+}
+
+.countdown-date {
+  margin: 0;
+  color: var(--terracotta);
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3.8vw, 2.2rem);
+  letter-spacing: 0.05em;
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(10px, 2.5vw, 16px);
+  width: min(620px, 100%);
+  margin: clamp(22px, 4vw, 34px) auto 0;
+}
+
+.countdown-unit {
+  display: grid;
+  gap: 10px;
+  padding: clamp(14px, 3vw, 22px) 10px;
+  border: 1px solid rgba(80, 105, 82, 0.16);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top, rgba(255, 252, 244, 0.94), rgba(236, 216, 196, 0.42));
+  box-shadow: 0 14px 36px rgba(74, 53, 36, 0.08);
+}
+
+.countdown-value {
+  color: var(--burgundy);
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.countdown-label {
+  color: var(--green);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.countdown-done {
+  margin: 28px 0 0;
+  color: var(--burgundy);
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3rem);
 }
 
 .heart-icon {
@@ -674,7 +745,7 @@ footer {
   gap: 10px;
   align-items: center;
   justify-content: center;
-  padding: 28px 20px 54px;
+  padding: 20px 20px 40px;
   color: var(--green);
 }
 
@@ -712,7 +783,9 @@ footer {
   .location-section,
   .timeline-section,
   .mood-section,
-  .rsvp-section {
+  .wishes-section,
+  .rsvp-section,
+  .countdown-section {
     padding-right: 16px;
     padding-left: 16px;
   }
@@ -740,5 +813,9 @@ footer {
   .palette-dot {
     width: 46px;
     height: 46px;
+  }
+
+  .countdown-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
