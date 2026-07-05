@@ -8,6 +8,38 @@
   background: var(--paper-deep);
 }
 
+.music-toggle {
+  display: grid;
+  position: fixed;
+  top: clamp(16px, 3vw, 24px);
+  right: clamp(16px, 3vw, 24px);
+  z-index: 200;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 252, 244, 0.32);
+  border-radius: 999px;
+  color: rgba(255, 252, 244, 0.92);
+  background: rgba(69, 57, 50, 0.38);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition:
+    background 0.22s ease,
+    transform 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.music-toggle:hover {
+  border-color: rgba(255, 252, 244, 0.5);
+  background: rgba(69, 57, 50, 0.55);
+  transform: scale(1.05);
+}
+
+.music-toggle:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 3px;
+}
+
 .opening-bg {
   position: absolute;
   inset: 0;

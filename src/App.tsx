@@ -18,8 +18,11 @@ import {
   MapPin,
   Music2,
   Sparkles,
+  Volume2,
+  VolumeX,
 } from 'lucide-react'
 import heroPhoto from './my_assets/hero4.jpg'
+import weddingSong from './my_assets/James-Arthur-Say-You-Won-t-Let-Go.m4a'
 import openingPhoto from './my_assets/photo_2026-07-04_18-56-40.jpg'
 import venuePhoto from './my_assets/Screenshot 2026-07-04 at 18.38.56.png'
 import './App.css'
@@ -124,14 +127,53 @@ const palette = [
 
 function App() {
   const [isInvitationOpen, setIsInvitationOpen] = useState(false)
+  const [isMuted, setIsMuted] = useState(false)
+  const audioRef = useRef<HTMLAudioElement>(null)
   const { scrollYProgress } = useScroll()
   const heroDecorY = useTransform(scrollYProgress, [0, 0.45], [0, -90])
   const pageDecorY = useTransform(scrollYProgress, [0, 1], [0, 180])
 
+  const handleInvitationOpen = () => {
+    setIsInvitationOpen(true)
+
+    const audio = audioRef.current
+    if (!audio) {
+      return
+    }
+
+    audio.volume = 0.45
+    audio.muted = isMuted
+    void audio.play().catch(() => {})
+  }
+
+  const toggleMusic = () => {
+    const audio = audioRef.current
+    const nextMuted = !isMuted
+
+    if (audio) {
+      audio.muted = nextMuted
+    }
+
+    setIsMuted(nextMuted)
+  }
+
   return (
-    <AnimatePresence mode="wait">
+    <>
+      <audio ref={audioRef} src={weddingSong} loop preload="auto" />
+      {isInvitationOpen ? (
+        <button
+          type="button"
+          className="music-toggle"
+          onClick={toggleMusic}
+          aria-label={isMuted ? 'Включить музыку' : 'Выключить музыку'}
+          aria-pressed={isMuted}
+        >
+          {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+        </button>
+      ) : null}
+      <AnimatePresence mode="wait">
       {!isInvitationOpen ? (
-        <OpeningScreen key="opening" onOpen={() => setIsInvitationOpen(true)} />
+        <OpeningScreen key="opening" onOpen={handleInvitationOpen} />
       ) : (
         <motion.main
           className="invitation"
@@ -321,6 +363,7 @@ function App() {
         </motion.main>
       )}
     </AnimatePresence>
+    </>
   )
 }
 
