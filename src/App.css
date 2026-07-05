@@ -856,6 +856,8 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    width: calc(4 * 42px + 3 * 16px);
+    margin-inline: auto;
     gap: 14px 16px;
   }
 
