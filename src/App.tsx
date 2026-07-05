@@ -12,12 +12,12 @@ import {
   CalendarDays,
   Clock3,
   Heart,
+  Leaf,
   MapPin,
   Music2,
   Sparkles,
-  Wine,
 } from 'lucide-react'
-import heroPhoto from './my_assets/photo_2026-07-04_18-41-42.jpg'
+import heroPhoto from './my_assets/hero4.jpg'
 import openingPhoto from './my_assets/photo_2026-07-04_18-56-40.jpg'
 import venuePhoto from './my_assets/Screenshot 2026-07-04 at 18.38.56.png'
 import './App.css'
@@ -85,10 +85,13 @@ const calendarDays = [
 ]
 
 const palette = [
-  'color-burgundy',
-  'color-terracotta',
-  'color-eucalyptus',
-  'color-powder',
+  'color-maroon',
+  'color-brick',
+  'color-mustard',
+  'color-dusty-rose',
+  'color-sand',
+  'color-olive',
+  'color-forest',
 ]
 
 function App() {
@@ -120,48 +123,37 @@ function App() {
           variants={fadeUp}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="eyebrow">Приглашение на свадьбу</p>
-          <div className="hero-headline">
+          <img
+            className="hero-bg-photo"
+            src={heroPhoto}
+            alt=""
+            aria-hidden="true"
+          />
+          <div className="hero-overlay" aria-hidden="true" />
+          <div className="hero-content">
             <h1>
               Андрей
               <span>&</span>
               Яна
             </h1>
-            <motion.div
-              className="hero-photo-heart"
-              initial={{ opacity: 0, scale: 0.92, y: 24 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <img src={heroPhoto} alt="Андрей и Яна" />
-            </motion.div>
+            <div className="hero-date" aria-label="24 сентября 2026">
+              <span>24</span>
+              <span className="hero-date-sep">/</span>
+              <span>09</span>
+              <span className="hero-date-sep">/</span>
+              <span>2026</span>
+            </div>
           </div>
-          <div className="hero-date" aria-label="24 сентября 2026">
-            <span>24</span>
-            <span className="hero-date-sep">/</span>
-            <span>09</span>
-            <span className="hero-date-sep">/</span>
-            <span>2026</span>
-          </div>
-          <p className="hero-text">
-            Дорогие родные и друзья, мы будем счастливы видеть вас рядом в день,
-            с которого начнется наша семейная история.
-          </p>
-          <a className="primary-link" href="#details">
-            Детали праздника
-          </a>
         </motion.div>
       </section>
 
       <section className="intro-section">
         <Reveal className="section-card centered">
           <Sparkles className="section-icon" size={26} />
-          <p className="eyebrow">We are getting married</p>
-          <h2>Вечер для самых близких</h2>
+          <p className="eyebrow"></p>
+          <h2>Дорогие Родные и Друзья</h2>
           <p>
-            Нам хочется собрать теплый, спокойный и очень красивый праздник:
-            живые цветы, приглушенный свет, любимая музыка и люди, без которых
-            этот день был бы неполным.
+            Наша история любви приводит нас к самому прекрасному моменту - созданию семьи. И мы мечтаем начать новую главу рядом с теми, кто нам особенно дорог.
           </p>
         </Reveal>
       </section>
@@ -170,7 +162,7 @@ function App() {
         <Reveal className="section-card calendar-card">
           <div className="section-kicker">
             <CalendarDays size={22} />
-            <span>Дата и время</span>
+            <span>Дата</span>
           </div>
           <h2>Сентябрь 2026</h2>
           <div className="calendar-grid" aria-label="Календарь на сентябрь 2026">
@@ -188,7 +180,6 @@ function App() {
               </span>
             ))}
           </div>
-          <p className="calendar-note">Сбор гостей в 15:30, церемония в 16:00</p>
         </Reveal>
       </section>
 
@@ -223,7 +214,7 @@ function App() {
       <section className="timeline-section">
         <Reveal className="section-title">
           <Clock3 size={24} />
-          <p className="eyebrow">Program</p>
+          <p className="eyebrow">Программа</p>
           <h2>План дня</h2>
         </Reveal>
         <div className="timeline">
@@ -241,14 +232,13 @@ function App() {
 
       <section className="mood-section">
         <Reveal className="mood-card">
-          <div className="mood-icon">
-            <Wine size={34} />
+          <div className="section-kicker">
+            <Leaf size={22} />
+            <span>Дресс-код</span>
           </div>
-          <p className="eyebrow">Dress code</p>
-          <h2>Осенняя цветочная палитра</h2>
+          <h2>Для нас главное - ваше присутствие</h2>
           <p>
-            Будем рады глубоким винным, терракотовым, эвкалиптовым и пудровым
-            оттенкам.
+            но мы будем рады, если вы придержитесь дресс-кода свадьбы в природных осенних оттенках.
           </p>
           <div className="palette-dots" aria-label="Цветовая палитра">
             {palette.map((className) => (
