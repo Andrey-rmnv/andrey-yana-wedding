@@ -640,8 +640,10 @@ footer {
 }
 
 .palette-dot {
+  flex-shrink: 0;
   width: 58px;
   height: 58px;
+  aspect-ratio: 1;
   border: 5px solid rgba(255, 252, 244, 0.84);
   border-radius: 999px;
   box-shadow: 0 12px 30px rgba(74, 53, 36, 0.14);
@@ -851,12 +853,16 @@ footer {
   }
 
   .palette-dots {
-    gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(4, 42px);
+    justify-content: center;
+    gap: 14px 16px;
   }
 
   .palette-dot {
-    width: 46px;
-    height: 46px;
+    width: 42px;
+    height: 42px;
+    border-width: 4px;
   }
 
   .countdown-grid {
