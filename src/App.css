@@ -307,6 +307,17 @@ footer {
   line-height: 1.25;
 }
 
+@media (min-width: 821px) {
+  .hero-card h1 {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.28em;
+    white-space: nowrap;
+  }
+}
+
 .hero-date {
   display: inline-flex;
   gap: 0.35em;
